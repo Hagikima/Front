@@ -1,0 +1,13 @@
+.mext {
+    background-color: orangered;
+    color: white;
+    padding: 4px 9px; /* Adjust the padding to make the button smaller */
+    border: none;
+    border-radius: 12px; /* Adjust the border-radius to make the button less rounded */
+    cursor: pointer;
+  }
+  
+  .mext:hover {
+    background-color: darkorange;
+  }
+  

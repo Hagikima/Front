@@ -1,0 +1,46 @@
+.pdflist-container {
+    margin-bottom: 20px;
+    margin-left: -500px;
+  }
+  
+  .pdflist {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .pdflist-item {
+    margin-bottom: 10px;
+  }
+  
+  .pdflist-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: orangered;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .pdflist-link:hover {
+    background-color: orange;
+  }
+  
+  .pdflist-no-bills {
+    color: #999;
+    font-style: italic;
+  }
+  
+  /* pdfList.css */
+  
+  .floating-description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #333;
+    border-radius: 4px;
+    z-index: 999;
+  }
