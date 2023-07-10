@@ -6,6 +6,8 @@ import Homecomponent from './components/Home.component'; // don't forget to upda
 import PDFViewer from './components/pdfViewer';
 import Sessioncomponents from './components/session.components';
 import ActiveUserInfoComponent from './components/activeuser.component';
+import PDFlist from './components/pdfList';
+import CheckedRowsComponent from './components/checkedRows.component';
 
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
             <Route exact path="/activesession" element={<Sessioncomponents/>} />
             <Route exact path='/activeuser' element={<ActiveUserInfoComponent/>}/>
             <Route exact path='/pdfv' element={<PDFViewer />} />
+            <Route exact path='/check' element={<CheckedRowsComponent/>}/>
+            <Route exact path='/pdfl' element={<PDFlist/>}/>
         </Routes>
       </BrowserRouter>
     );

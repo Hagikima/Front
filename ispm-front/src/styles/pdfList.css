@@ -1,46 +1,158 @@
 .pdflist-container {
-    margin-bottom: 20px;
-    margin-left: -500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow-x: auto;
   }
   
   .pdflist {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    border-collapse: collapse;
+    table-layout: fixed;
   }
   
-  .pdflist-item {
-    margin-bottom: 10px;
+  .pdflist th,
+  .pdflist td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .pdflist th:nth-child(3),
+  .pdflist td:nth-child(3) {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px;
+  }
+  
+  .pdflist th {
+    background-color: #333;
+    color: white;
   }
   
   .pdflist-link {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: orangered;
-    color: white;
     text-decoration: none;
-    border-radius: 4px;
+    color: #333;
+    transition: color 0.3s ease;
   }
   
   .pdflist-link:hover {
-    background-color: orange;
+    color: #666;
   }
   
-  .pdflist-no-bills {
-    color: #999;
-    font-style: italic;
+  .biggest-field {
+    width: 30%;
   }
   
-  /* pdfList.css */
+
   
-  .floating-description {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .pdflist tbody tr:nth-child(even) {
+    background-color: #cacaca;
+  }
+  
+  .pdflist tbody tr:nth-child(odd) {
+    background-color: #d9d9d9;
+  }
+
+  .pdflist tbody tr.selected-row {
+    background-color: rgb(245, 194, 100);
+  }
+  
+  
+  .search-filter-container {
+    display: -webkit-inline-flex;
+    justify-content: space-around;
+    align-items: center;
     padding: 10px;
-    background-color: white;
-    border: 1px solid #333;
-    border-radius: 4px;
+    background-color: gray;
+    color: white;
+    width: 700px;
+    position: fixed;
+    margin-top: -15px;
     z-index: 999;
   }
+  
+  .search-filter-container input[type="text"],
+  .search-filter-container select {
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .search-filter-container input[type="text"] {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .table-container {
+    width: fit-content;
+    max-width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 300px;
+    margin-top: 70px;
+    position: fill;
+  }
+  
+  .checkbox-column {
+    text-align: center;
+  }
+  
+  /* Hide the default checkbox */
+input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* Create a custom checkbox */
+  .checkbox-container {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  
+  /* Style the custom checkbox */
+  .checkbox-container span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+  }
+  
+  /* Style the custom checkbox when checked */
+  .checkbox-container input:checked ~ span {
+    background-color: orangered;
+  }
+  
+  /* Style the checkmark */
+  .checkbox-container span:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkbox-container input:checked ~ span:after {
+    display: block;
+  }
+  
+  /* Style the checkmark appearance */
+  .checkbox-container span:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import backgroundImage from '../assets/bg_login.png'; // Update the path to your background image file
+import backgroundImage from '../assets/bg_login.jpg'; // Update the path to your background image file
 import '../styles/login.css';
 
 const LoginComponent  = () => {

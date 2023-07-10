@@ -1,6 +1,5 @@
-// PDFViewer component
 import React, { useState, useRef, useEffect } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import '../styles/pdfViewer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -8,11 +7,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const PDFViewer = ({ clickedBillInfo, reload }) => {
   const [numPages, setNumPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageInputRef = useRef(null);
   const [pdfData, setPdfData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchPdfData = async () => {
-    const billId = clickedBillInfo || null;
+    const billId = clickedBillInfo || '1';
     console.log('bill id pdf view', billId);
     try {
       const response = await fetch(`/bill_data/${billId}`);
@@ -34,66 +33,43 @@ const PDFViewer = ({ clickedBillInfo, reload }) => {
     setNumPages(numPages);
   };
 
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const goToNextPage = () => {
-    if (currentPage < numPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePageInputChange = (e) => {
-    const page = parseInt(e.target.value);
-    setCurrentPage(page >= 1 && page <= numPages ? page : currentPage);
-  };
-
-  const handlePageInputClick = () => {
-    if (pageInputRef.current) {
-      pageInputRef.current.select();
-    }
-  };
-
-  const handlePageInputBlur = () => {
-    if (currentPage < 1) {
-      setCurrentPage(1);
-    } else if (currentPage > numPages) {
-      setCurrentPage(numPages);
-    }
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <div className="pdf-container">
-      <div className="pdf-controls">
-        <button className="mext" onClick={goToPreviousPage} disabled={currentPage === 1}>
-          Back
-        </button>
-        <input
-          type="number"
-          className="current-page-input"
-          min="1"
-          max={numPages}
-          value={currentPage}
-          onChange={handlePageInputChange}
-          onClick={handlePageInputClick}
-          onBlur={handlePageInputBlur}
-          ref={pageInputRef}
-        />
-        <span>of {numPages}</span>
-        <button className="mext" onClick={goToNextPage} disabled={currentPage === numPages}>
-          Next
-        </button>
-      </div>
       <div className="pdf-document">
         {pdfData && (
-          <Document file={pdfData} onLoadSuccess={onDocumentLoadSuccess}>
-            <Page pageNumber={currentPage} />
-          </Document>
+          <button className="open-pdf-button" onClick={openModal}>
+            Open PDF
+          </button>
         )}
       </div>
+      {isModalOpen && (
+        <div className="pdf-modal-overlay">
+        <div className="pdf-modal">
+          <button className="pdf-modal-close" onClick={closeModal}>
+            Close
+          </button>
+          <div className="pdf-modal-content">
+            <div className="pdf-modal-left">
+              {pdfData && (
+                <iframe src={pdfData} className="pdf-iframe" title="PDF Viewer" />
+              )}
+            </div>
+            <div className="pdf-modal-right">
+              <h2>Coming Soon</h2>
+              <p>Additional content will be available in the future.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      )}
     </div>
   );
 };
