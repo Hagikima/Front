@@ -100,3 +100,56 @@
     background-image: url("../assets/open_pdf_icon2.svg");
     background-size: cover;
   }
+
+    .custom-radio-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .custom-radio-group label {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .custom-radio-group input[type="radio"] {
+    display: none;
+  }
+  
+  .custom-radio-group label.btn {
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin: 0;
+    border-color: black;
+  }
+  
+  .custom-radio-group label.btn input[type="radio"]:checked + span {
+    background-color: rgb(247, 202, 119);
+    color: black;
+    padding: 7px 10px;
+  }
+
+   .custom-radio-group label.btn:hover {
+    background-color: #e9ecef;
+    color: #212529;
+    cursor: pointer;
+  }
+
+  .firstycol{
+    width: 300px;
+  }
+
+  .problem-description{
+    margin-top: 430px;
+    margin-left: -250px;
+    position: auto;
+    max-width: 320px;
+  }
+
+ .options-container{
+    margin-top: -150px;
+    margin-left: -35px;
+    position: absolute;
+ }
+ .describer{
+    width: 400;
+ }
